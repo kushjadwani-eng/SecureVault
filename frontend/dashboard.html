@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault Dashboard &bull; SecureVault</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar">
+        <a href="/dashboard" class="nav-brand">
+            🛡️ SecureVault
+        </a>
+        <div class="nav-user">
+            <div class="user-tag">
+                User: <span id="userNameDisplay">Loading...</span> (<span id="userEmailDisplay">...</span>)
+            </div>
+            <button class="btn btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;" onclick="handleLogout()">
+                Logout
+            </button>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Overview Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">🔑</div>
+                <div class="stat-info">
+                    <h3 id="statTotalCount">0</h3>
+                    <p>Total Saved Accounts</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏷️</div>
+                <div class="stat-info">
+                    <h3 id="statCategoryCount">0</h3>
+                    <p>Active Categories</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💪</div>
+                <div class="stat-info">
+                    <h3 id="statHealth">100%</h3>
+                    <p>Vault Health Score</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls Bar -->
+        <div class="controls-bar">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search by website, account, or URL..." oninput="renderEntries()">
+            </div>
+
+            <div class="category-filters">
+                <button class="filter-pill active" onclick="setFilter('All', this)">All</button>
+                <button class="filter-pill" onclick="setFilter('Personal', this)">Personal</button>
+                <button class="filter-pill" onclick="setFilter('Work', this)">Work</button>
+                <button class="filter-pill" onclick="setFilter('Social', this)">Social</button>
+                <button class="filter-pill" onclick="setFilter('Education', this)">Education</button>
+            </div>
+
+            <button class="btn btn-primary" style="width: auto;" onclick="openAddModal()">
+                + Add Credential
+            </button>
+        </div>
+
+        <!-- Credentials List Container -->
+        <div id="vaultListContainer" class="vault-list">
+            <!-- Populated dynamically via vault.js -->
+        </div>
+    </div>
+
+    <!-- Add/Edit Credential Modal Dialog -->
+    <div id="credentialModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Credential</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+
+            <div id="modalAlert" class="alert"></div>
+
+            <form id="modalForm" onsubmit="handleSaveEntry(event)">
+                <div class="form-group">
+                    <label for="entryWebsite">Website or Service Name *</label>
+                    <input type="text" id="entryWebsite" class="form-input" placeholder="e.g. GitHub, Google, Amazon" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryUrl">Website URL</label>
+                    <input type="text" id="entryUrl" class="form-input" placeholder="e.g. https://github.com/login">
+                </div>
+
+                <div class="form-group">
+                    <label for="entryUsername">Username or Email</label>
+                    <input type="text" id="entryUsername" class="form-input" placeholder="e.g. alice@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="entryPassword">Password *</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="entryPassword" class="form-input" placeholder="Secret password" required>
+                        <button type="button" class="toggle-password-btn" onclick="togglePasswordVisibility('entryPassword', this)">👁️</button>
+                    </div>
+                    <div class="generator-bar">
+                        <button type="button" class="btn-generate" onclick="generateStrongPassword()">
+                            🎲 Generate Strong Password
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryCategory">Category</label>
+                    <select id="entryCategory" class="form-input" style="cursor: pointer;">
+                        <option value="Personal">Personal</option>
+                        <option value="Work">Work</option>
+                        <option value="Social">Social</option>
+                        <option value="Education">Education</option>
+                        <option value="Finance">Finance</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" style="width: auto;">Save Credential</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/vault.js"></script>
+</body>
+</html>

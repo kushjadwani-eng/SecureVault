@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureVault &bull; Personal Encrypted Password Manager</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .hero-section {
+            text-align: center;
+            padding: 20px 0 32px 0;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--primary);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto 28px auto;
+            line-height: 1.5;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 36px;
+        }
+
+        .feature-box {
+            background: #111827;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 22px;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-2px);
+            border-color: #38bdf8;
+        }
+
+        .feature-icon {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .feature-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .feature-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container" style="padding: 40px 20px;">
+        <div class="auth-card" style="max-width: 820px; padding: 44px 36px;">
+            <div class="hero-section">
+                <div class="hero-badge">
+                    🔒 C++ Core &bull; libsodium AEAD &bull; SQLite
+                </div>
+                <h1 class="hero-title">
+                    Personal Encrypted Password Manager
+                </h1>
+                <p class="hero-subtitle">
+                    Safely store, generate, and manage your website credentials with military-grade 
+                    <strong>Argon2id</strong> master password protection and 
+                    <strong>XChaCha20-Poly1305</strong> authenticated encryption.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="/login" class="btn btn-primary" style="width: auto; padding: 12px 28px; font-size: 1rem;">
+                        Unlock Vault
+                    </a>
+                    <a href="/register" class="btn btn-secondary" style="width: auto; padding: 12px 24px; font-size: 1rem;">
+                        Create New Vault
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Features -->
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-title">Zero-Plaintext Storage</div>
+                    <div class="feature-desc">
+                        Passwords are encrypted on the server using unique 24-byte nonces before ever touching SQLite disk storage.
+                    </div>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Native C++ Performance</div>
+                    <div class="feature-desc">
+                        Engineered with modern C++ and Crow microframework for ultra-low latency and lightweight system footprint.
+                    </div>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon">🎲</div>
+                    <div class="feature-title">Password Generator</div>
+                    <div class="feature-desc">
+                        Create uncrackable, cryptographically secure 18+ character passwords with one click right in your browser.
+                    </div>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon">🏷️</div>
+                    <div class="feature-title">Search &amp; Categories</div>
+                    <div class="feature-desc">
+                        Organize your accounts across Personal, Work, Education, and Social categories with instant filtering.
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-footer" style="margin-top: 36px;">
+                SecureVault &bull; Personal Password Security
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script>
+        // If the user already has an active session, take them straight to dashboard
+        checkAuth(false);
+    </script>
+</body>
+</html>

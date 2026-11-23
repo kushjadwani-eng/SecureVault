@@ -1,0 +1,20 @@
+# Build directory
+build/
+
+# Local databases
+data/*.db*
+data/*.db-wal
+data/*.db-shm
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Archives and binaries
+*.tar.gz
+*.zip
+*.so
+*.o
+*.a

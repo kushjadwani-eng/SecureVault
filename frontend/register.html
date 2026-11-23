@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register &bull; SecureVault</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-brand">
+                <h1>🛡️ SecureVault</h1>
+                <p>Create your personal encrypted vault</p>
+            </div>
+
+            <div id="alertBox" class="alert"></div>
+
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="form-input" placeholder="e.g. Alice Walker" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-input" placeholder="alice@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Master Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" class="form-input" placeholder="Minimum 8 characters" minlength="8" required>
+                        <button type="button" class="toggle-password-btn" onclick="togglePasswordVisibility('password', this)">👁️</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Master Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="confirmPassword" class="form-input" placeholder="Re-type master password" required>
+                        <button type="button" class="toggle-password-btn" onclick="togglePasswordVisibility('confirmPassword', this)">👁️</button>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn btn-primary" style="margin-top: 10px;">
+                    Create Master Account
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                Already have a vault? <a href="/login">Unlock here</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script>
+        // Check if user is already logged in
+        checkAuth(false);
+    </script>
+</body>
+</html>
